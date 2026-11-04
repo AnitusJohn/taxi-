@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King of King Taxi | Taxi Booking</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;color:#172033;background:#fff}
+:root{--navy:#101d35;--gold:#f5b82e;--light:#f5f7fa}
+.container{width:90%;max-width:1150px;margin:auto}
+header{background:white;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px #ddd}
+nav{height:75px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:bold;color:var(--navy)}
+.logo span{color:#d99b08}
+nav a{text-decoration:none;color:var(--navy);margin-left:22px;font-weight:bold}
+.btn{display:inline-block;background:var(--gold);padding:13px 23px;border:0;border-radius:7px;color:#111;font-weight:bold;text-decoration:none;cursor:pointer}
+.hero{background:linear-gradient(120deg,#101d35,#263f65);color:white;padding:90px 0}
+.hero-content{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px}
+.hero h1{font-size:50px;line-height:1.15;margin-bottom:20px}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#ddd;line-height:1.8;margin-bottom:25px}
+.car{font-size:160px;text-align:center}
+section{padding:75px 0}
+.heading{text-align:center;margin-bottom:40px}
+.heading h2{font-size:35px;color:var(--navy);margin-bottom:10px}
+.heading p{color:#777}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature,.vehicle,.price-card,.booking{background:white;border-radius:12px;padding:25px;box-shadow:0 5px 25px #0000000d;border:1px solid #eee}
+.feature{text-align:center}
+.feature h3{margin:12px 0;color:var(--navy)}
+.feature p{color:#777;font-size:14px}
+.vehicles,.prices{background:var(--light)}
+.vehicle-grid,.price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
+.vehicle{text-align:center}
+.vehicle .car{font-size:100px}
+.vehicle h3{font-size:24px;color:var(--navy)}
+.vehicle p{color:#777;margin:10px}
+.vehicle .btn{margin-top:15px}
+.price-card h3{color:var(--navy);margin-bottom:15px}
+.price-row{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid #eee;font-size:14px}
+.price-row strong{text-align:right}
+.note{background:#fff4d6;padding:15px;margin-top:18px;border-radius:8px;font-size:13px;color:#755a18}
+.booking-section{background:#f5f7fa}
+.booking{max-width:850px;margin:auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-weight:bold;font-size:14px}
+.field input,.field select,.field textarea{padding:13px;border:1px solid #ddd;border-radius:7px;width:100%;font:inherit}
+.field.full{grid-column:1/-1}
+.fare{background:#fff4d6;padding:20px;border-radius:9px;margin-top:20px}
+.fare h2{color:var(--navy);font-size:30px;margin:8px 0}
+.fare small{color:#765e2a}
+.actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.actions button{flex:1}
+footer{background:var(--navy);color:white;text-align:center;padding:35px 0}
+footer p{color:#ccc;margin:10px}
+footer a{color:var(--gold)}
+@media(max-width:768px){
+ nav{height:auto;padding:18px 0;flex-wrap:wrap;gap:15px}
+ nav div:last-child{display:flex;gap:12px;flex-wrap:wrap}
+ nav a{margin:0;font-size:13px}
+ .hero-content{grid-template-columns:1fr;text-align:center}
+ .hero h1{font-size:38px}
+ .car{font-size:110px}
+ .features{grid-template-columns:1fr}
+ .vehicle-grid,.price-grid{grid-template-columns:1fr}
+ .form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ section{padding:50px 0}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="container">
+  <nav>
+   <div class="logo">KING OF <span>KING</span> TAXI</div>
+   <div>
+    <a href="#home">Home</a>
+    <a href="#vehicles">Vehicles</a>
+    <a href="#pricing">Tariff</a>
+    <a href="#booking">Booking</a>
+   </div>
+  </nav>
+ </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="hero" id="home">
+ <div class="container hero-content">
+  <div>
+   <h1>Your Journey,<br><span>Our Responsibility</span></h1>
+   <p>Travel comfortably and safely with King of King Taxi. Choose from our Sedan and Luxury SUV services for local and outstation travel.</p>
+   <a href="#booking" class="btn">Book Your Taxi →</a>
+  </div>
+  <div class="car">🚕</div>
+ </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+ <div class="container">
+  <div class="heading">
+   <h2>Why Choose Us?</h2>
+   <p>Comfortable and reliable taxi services.</p>
+  </div>
+  <div class="features">
+   <div class="feature">
+    <div style="font-size:40px">🚘</div>
+    <h3>Comfortable Vehicles</h3>
+    <p>Well-maintained vehicles for your journeys.</p>
+   </div>
+   <div class="feature">
+    <div style="font-size:40px">💰</div>
+    <h3>Clear Pricing</h3>
+    <p>Transparent fare estimates based on our tariff.</p>
+   </div>
+   <div class="feature">
+    <div style="font-size:40px">🕒</div>
+    <h3>Easy Booking</h3>
+    <p>Simple booking process for your convenience.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- VEHICLES -->
+<section class="vehicles" id="vehicles">
+ <div class="container">
+  <div class="heading">
+   <h2>Our Vehicles</h2>
+   <p>Select the vehicle suitable for your journey.</p>
+  </div>
+  <div class="vehicle-grid">
+   <div class="vehicle">
+    <div class="car">🚗</div>
+    <h3>Sedan</h3>
+    <p>4+1 Passengers</p>
+    <p>Local, Round Trip and One-way Drop</p>
+    <button class="btn" onclick="selectVehicle('sedan')">Book Sedan</button>
+   </div>
+   <div class="vehicle">
+    <div class="car">🚙</div>
+    <h3>Luxury SUV</h3>
+    <p>7+1 Passengers</p>
+    <p>Local, Round Trip and One-way Drop</p>
+    <button class="btn" onclick="selectVehicle('suv')">Book SUV</button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- PRICING -->
+<section class="prices" id="pricing">
+ <div class="container">
+  <div class="heading">
+   <h2>Our Tariff</h2>
+   <p>Travel packages and pricing.</p>
+  </div>
+
+  <div class="price-grid">
+   <div class="price-card">
+    <h3>Sedan – 4+1</h3>
+    <div class="price-row"><span>Local Rental</span><strong>₹1,000</strong></div>
+    <div class="price-row"><span>Package</span><strong>3 Hrs / 30 KM</strong></div>
+    <div class="price-row"><span>Round Trip</span><strong>₹13 / KM</strong></div>
+    <div class="price-row"><span>Round Trip Minimum</span><strong>250 KM</strong></div>
+    <div class="price-row"><span>One-way Drop</span><strong>₹14 / KM</strong></div>
+    <div class="price-row"><span>One-way Minimum</span><strong>130 KM</strong></div>
+    <div class="price-row"><span>Driver Bata</span><strong>₹400</strong></div>
+   </div>
+
+   <div class="price-card">
+    <h3>Luxury SUV – 7+1</h3>
+    <div class="price-row"><span>Local Rental</span><strong>₹2,000</strong></div>
+    <div class="price-row"><span>Package</span><strong>5 Hrs / 50 KM</strong></div>
+    <div class="price-row"><span>Round Trip</span><strong>₹18 / KM</strong></div>
+    <div class="price-row"><span>Round Trip Minimum</span><strong>250 KM</strong></div>
+    <div class="price-row"><span>One-way Drop</span><strong>₹19 / KM</strong></div>
+    <div class="price-row"><span>One-way Minimum</span><strong>130 KM</strong></div>
+    <div class="price-row"><span>Driver Bata</span><strong>₹500</strong></div>
+   </div>
+  </div>
+  <div class="note">
+   Toll, parking, permit and hill charges are extra.
+   Monthly packages are available. Contact us for details.
+  </div>
+ </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section" id="booking">
+ <div class="container">
+  <div class="heading">
+   <h2>Book Your Taxi</h2>
+   <p>Enter your journey details and calculate your estimated fare.</p>
+  </div>
+
+  <div class="booking">
+   <form id="bookingForm">
+    <div class="form-grid">
+
+     <div class="field">
+      <label>Customer Name</label>
+      <input id="name" type="text" placeholder="Your name" required>
+     </div>
+
+     <div class="field">
+      <label>Mobile Number</label>
+      <input id="phone" type="tel" placeholder="Mobile number" pattern="[0-9+ ]{10,15}" required>
+     </div>
+
+     <div class="field">
+      <label>Select Vehicle</label>
+      <select id="vehicle" onchange="updateFare()">
+       <option value="sedan">Sedan – 4+1</option>
+       <option value="suv">Luxury SUV – 7+1</option>
+      </select>
+     </div>
+
+     <div class="field">
+      <label>Trip Type</label>
+      <select id="trip" onchange="updateFare()">
+       <option value="local">Local Rental</option>
+       <option value="round">Round Trip</option>
+       <option value="oneway">One-way Drop</option>
+      </select>
+     </div>
+
+     <div class="field">
+      <label>Pickup Location</label>
+      <input id="pickup" placeholder="Pickup location" required>
+     </div>
+
+     <div class="field">
+      <label>Destination</label>
+      <input id="destination" placeholder="Destination" required>
+     </div>
+
+     <div class="field">
+      <label>Travel Date</label>
+      <input id="date" type="date" required>
+     </div>
+
+     <div class="field">
+      <label>Travel Time</label>
+      <input id="time" type="time" required>
+     </div>
+
+     <div class="field">
+      <label>Passengers</label>
+      <select id="passengers">
+       <option value="1">1</option>
+       <option value="2">2</option>
+       <option value="3">3</option>
+       <option value="4">4</option>
+       <option value="5">5</option>
+       <option value="6">6</option>
+       <option value="7">7</option>
+       <option value="8">8</option>
+      </select>
+     </div>
+
+     <div class="field" id="distanceField" style="display:none">
+      <label>Distance (KM)</label>
+      <input id="distance" type="number" min="1" placeholder="Enter distance" oninput="updateFare()">
+     </div>
+
+     <div class="field full">
+      <label>Additional Requirements</label>
+      <textarea id="notes" placeholder="Any additional information..."></textarea>
+     </div>
+
+    </div>
+
+    <div class="fare">
+     <strong>Estimated Travel Fare</strong>
+     <h2 id="fare">₹1,000</h2>
+     <small id="fareDetails">Local package: 3 hours / 30 KM</small>
+     <p class="note" id="fareNote">Toll, parking, permit and hill charges extra.</p>
+    </div>
+
+    <div class="actions">
+     <button class="btn" type="submit">Book via WhatsApp</button>
+     <button class="btn" type="button" onclick="copyBooking()">Copy Details</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="container">
+  <h2>KING OF KING TAXI</h2>
+  <p>Your trusted travel partner.</p>
+  <p>Website: kingofkingtaxi.com</p>
+  <p>© <span id="year"></span> King of King Taxi. All Rights Reserved.</p>
+ </div>
+</footer>
+
+<script>
+// Replace with client's WhatsApp number.
+// Include country code. Example: 919876543210
+const WHATSAPP_NUMBER = "";
+
+const rates = {
+ sedan:{
+  name:"Sedan 4+1",
+  local:1000,
+  hours:3,
+  localKm:30,
+  round:13,
+  oneway:14,
+  minRound:250,
+  minOne:130,
+  bata:400
+ },
+ suv:{
+  name:"Luxury SUV 7+1",
+  local:2000,
+  hours:5,
+  localKm:50,
+  round:18,
+  oneway:19,
+  minRound:250,
+  minOne:130,
+  bata:500
+ }
+};
+
+const $ = id => document.getElementById(id);
+
+function money(value){
+ return "₹"+Math.round(value).toLocaleString("en-IN");
+}
+
+function selectVehicle(type){
+ $("vehicle").value=type;
+ updateFare();
+ $("booking").scrollIntoView({behavior:"smooth"});
+}
+
+function updateFare(){
+ const vehicle=rates[$("vehicle").value];
+ const trip=$("trip").value;
+ const km=Number($("distance").value)||0;
+
+ $("distanceField").style.display=
+  trip==="local"?"none":"flex";
+
+ $("distance").required=trip!=="local";
+
+ if(trip==="local"){
+  $("fare").textContent=money(vehicle.local);
+  $("fareDetails").textContent=
+   `Local package: ${vehicle.hours} hours / ${vehicle.localKm} KM`;
+ }else if(km<=0){
+  $("fare").textContent="Enter KM";
+  $("fareDetails").textContent="Enter distance to calculate fare";
+ }else{
+  let minimum,rate,tripName;
+
+  if(trip==="round"){
+   minimum=vehicle.minRound;
+   rate=vehicle.round;
+   tripName="Round Trip";
+  }else{
+   minimum=vehicle.minOne;
+   rate=vehicle.oneway;
+   tripName="One-way Drop";
+  }
+
+  const billable=Math.max(km,minimum);
+  const total=billable*rate+vehicle.bata;
+
+  $("fare").textContent=money(total);
+  $("fareDetails").textContent=
+   `${tripName}: ${billable} KM × ${money(rate)} + ${money(vehicle.bata)} driver bata`;
+ }
+
+ $("fareNote").textContent=
+ "Toll, parking, permit and hill charges extra.";
+
+ const max=$("vehicle").value==="sedan"?5:8;
+ $("passengers").querySelectorAll("option").forEach(option=>{
+  option.disabled=Number(option.value)>max;
+ });
+ if(Number($("passengers").value)>max){
+  $("passengers").value=max;
+ }
+}
+
+function bookingMessage(){
+ const vehicle=rates[$("vehicle").value];
+ const trip=$("trip").value;
+ const km=Number($("distance").value)||0;
+
+ let fareText=$("fare").textContent;
+
+ return `KING OF KING TAXI - BOOKING REQUEST
+
+Name: ${$("name").value}
+Mobile: ${$("phone").value}
+Vehicle: ${vehicle.name}
+Trip: ${trip}
+Pickup: ${$("pickup").value}
+Destination: ${$("destination").value}
+Date: ${$("date").value}
+Time: ${$("time").value}
+Passengers: ${$("passengers").value}
+Distance: ${trip==="local"?"Local package":km+" KM"}
+Estimated Fare: ${fareText}
+Additional Requirements: ${$("notes").value}
+
+Note: Toll, parking, permit and hill charges extra.
+Fare and booking subject to confirmation.`;
+}
+
+$("bookingForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ if(!this.reportValidity())return;
+
+ if($("trip").value!=="local" &&
+ Number($("distance").value)<=0){
+  alert("Please enter travel distance.");
+  return;
+ }
+
+ const message=bookingMessage();
+
+ if(WHATSAPP_NUMBER){
+  window.open(
+   "https://wa.me/"+WHATSAPP_NUMBER+
+   "?text="+encodeURIComponent(message),
+   "_blank"
+  );
+ }else{
+  navigator.clipboard.writeText(message)
+   .then(()=>alert("Booking details copied. Add the client's WhatsApp number to enable direct booking."))
+   .catch(()=>alert(message));
+ }
+});
+
+function copyBooking(){
+ if(!$("bookingForm").reportValidity())return;
+
+ navigator.clipboard.writeText(bookingMessage())
+ .then(()=>alert("Booking details copied successfully!"))
+ .catch(()=>alert("Unable to copy. Please copy the details manually."));
+}
+
+const today=new Date();
+$("date").min=[
+ today.getFullYear(),
+ String(today.getMonth()+1).padStart(2,"0"),
+ String(today.getDate()).padStart(2,"0")
+].join("-");
+
+$("year").textContent=new Date().getFullYear();
+updateFare();
+</script>
+
+</body>
+</html>
