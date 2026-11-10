@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#850d13">
+    <title>King of King Taxi | Coming Soon</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #b5121b;
+            --dark-red: #65080d;
+            --deep-red: #250709;
+            --yellow: #c99a00;
+            --gold: #edc343;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            color: var(--white);
+            background:
+                radial-gradient(circle at top right, #6b1515 0%, transparent 40%),
+                linear-gradient(135deg, #180608, #57090f, #250709);
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+
+        header {
+            width: 100%;
+            padding: 25px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(237, 195, 67, 0.25);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+
+        .logo span {
+            color: var(--white);
+        }
+
+        .header-contact {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* MAIN CONTENT */
+
+        main {
+            flex: 1;
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        .taxi-icon {
+            font-size: 75px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
+        }
+
+        .small-heading {
+            display: inline-block;
+            padding: 9px 22px;
+            border: 1px solid var(--yellow);
+            border-radius: 30px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(38px, 7vw, 76px);
+            line-height: 1.12;
+            font-weight: 900;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        h1 span {
+            display: block;
+            color: var(--gold);
+        }
+
+        .subtitle {
+            color: #f3dddd;
+            font-size: 19px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: var(--gold);
+            margin: 0 auto 30px;
+            border-radius: 10px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .service-chip {
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: rgba(181, 18, 27, 0.25);
+            border: 1px solid var(--yellow);
+            color: #f4d56b;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .whatsapp-btn {
+            background: var(--red);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+        }
+
+        .whatsapp-btn:hover {
+            background: var(--yellow);
+            color: var(--deep-red);
+            transform: translateY(-3px);
+        }
+
+        .call-btn {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+        }
+
+        .call-btn:hover {
+            background: var(--gold);
+            color: var(--deep-red);
+            transform: translateY(-3px);
+        }
+
+        .contact-number {
+            color: #f2d66c;
+            font-size: 17px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 22px 15px;
+            text-align: center;
+            border-top: 1px solid rgba(237, 195, 67, 0.25);
+            color: #d8bdbd;
+            font-size: 12px;
+        }
+
+        footer span {
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* DECORATIVE CIRCLES */
+
+        .circle {
+            position: fixed;
+            border: 1px solid rgba(237, 195, 67, 0.12);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circle-one {
+            width: 300px;
+            height: 300px;
+            top: 15%;
+            left: -180px;
+        }
+
+        .circle-two {
+            width: 400px;
+            height: 400px;
+            bottom: -200px;
+            right: -180px;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 600px) {
+            header {
+                padding: 20px 5%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            main {
+                padding: 50px 18px;
+            }
+
+            .taxi-icon {
+                font-size: 60px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .service-chip {
+                font-size: 12px;
+                padding: 10px 14px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            footer {
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="circle circle-one"></div>
+    <div class="circle circle-two"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            KING OF <span>KING TAXI</span>
+        </div>
+
+        <a class="header-contact" href="tel:+919578117337">
+            CALL: +91 95781 17337
+        </a>
+    </header>
+
+    <!-- MAIN SECTION -->
+    <main>
+        <div class="container">
+
+            <div class="taxi-icon">🚕</div>
+
+            <div class="small-heading">
+                YOUR JOURNEY STARTS HERE
+            </div>
+
+            <h1>
+                WE'RE
+                <span>COMING SOON</span>
+            </h1>
+
+            <div class="divider"></div>
+
+            <p class="subtitle">
+                Your Journey, Our Responsibility.<br>
+                Comfortable Rides. Reliable Service. Affordable Travel.
+            </p>
+
+            <!-- SERVICES -->
+            <div class="services">
+                <div class="service-chip">SEDAN 4+1</div>
+                <div class="service-chip">LUXURY SUV 7+1</div>
+                <div class="service-chip">LOCAL TRAVEL</div>
+                <div class="service-chip">OUTSTATION TRIPS</div>
+            </div>
+
+            <!-- CONTACT BUTTONS -->
+            <div class="buttons">
+
+                <a class="btn whatsapp-btn"
+                   href="https://wa.me/919578117337?text=Hello%20King%20of%20King%20Taxi%2C%20I%20would%20like%20to%20book%20a%20taxi."
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    CONTACT ON WHATSAPP
+                </a>
+
+                <a class="btn call-btn" href="tel:+919578117337">
+                    CALL NOW
+                </a>
+
+            </div>
+
+            <p class="contact-number">
+                +91 95781 17337
+            </p>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 <span>KING OF KING TAXI</span>. All Rights Reserved.
+        <br>
+        Safe Journey | Best Service | Customer Satisfaction
+    </footer>
+
+</body>
+</html>

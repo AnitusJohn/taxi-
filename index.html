@@ -2,363 +2,1946 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#850d13">
-    <title>King of King Taxi | Coming Soon</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#790b12">
+<title>King of King Taxi | Your Journey, Our Responsibility</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-        :root {
-            --red: #b5121b;
-            --dark-red: #65080d;
-            --deep-red: #250709;
-            --yellow: #c99a00;
-            --gold: #edc343;
-            --white: #ffffff;
-        }
+<style>
+:root {
+    --red: #b5121b;
+    --dark-red: #790b12;
+    --deep-red: #210709;
+    --yellow: #c99a00;
+    --gold: #edc343;
+    --cream: #fff9ed;
+    --white: #ffffff;
+    --text: #343030;
+}
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-            color: var(--white);
-            background:
-                radial-gradient(circle at top right, #6b1515 0%, transparent 40%),
-                linear-gradient(135deg, #180608, #57090f, #250709);
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* HEADER */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
 
-        header {
-            width: 100%;
-            padding: 25px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(237, 195, 67, 0.25);
-        }
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    overflow-x: hidden;
+}
 
-        .logo {
-            font-size: 25px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: var(--gold);
-        }
+a {
+    text-decoration: none;
+}
 
-        .logo span {
-            color: var(--white);
-        }
+button, input, select, textarea {
+    font-family: inherit;
+}
 
-        .header-contact {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
+img {
+    max-width: 100%;
+}
 
-        /* MAIN CONTENT */
+/* SCROLL PROGRESS */
 
-        main {
-            flex: 1;
-            min-height: 75vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-            text-align: center;
-        }
+#scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    z-index: 2000;
+}
 
-        .container {
-            max-width: 850px;
-            width: 100%;
-        }
+/* TOP BAR */
 
-        .taxi-icon {
-            font-size: 75px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.4));
-        }
+.topbar {
+    background: var(--deep-red);
+    color: white;
+    padding: 10px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
 
-        .small-heading {
-            display: inline-block;
-            padding: 9px 22px;
-            border: 1px solid var(--yellow);
-            border-radius: 30px;
-            color: var(--gold);
-            font-size: 12px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            margin-bottom: 25px;
-        }
+.topbar a {
+    color: var(--gold);
+    font-weight: 800;
+}
 
-        h1 {
-            font-size: clamp(38px, 7vw, 76px);
-            line-height: 1.12;
-            font-weight: 900;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-        }
+/* HEADER */
 
-        h1 span {
-            display: block;
-            color: var(--gold);
-        }
+header {
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,.1);
+}
 
-        .subtitle {
-            color: #f3dddd;
-            font-size: 19px;
-            line-height: 1.7;
-            margin-bottom: 35px;
-        }
+.logo {
+    font-size: 23px;
+    font-weight: 900;
+    color: var(--red);
+    line-height: 1.1;
+}
 
-        .divider {
-            width: 100px;
-            height: 4px;
-            background: var(--gold);
-            margin: 0 auto 30px;
-            border-radius: 10px;
-        }
+.logo span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--yellow);
+    margin-top: 6px;
+}
 
-        /* SERVICES */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
 
-        .services {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
+.nav-links a {
+    font-size: 11px;
+    font-weight: 800;
+    color: #333;
+    transition: .3s;
+}
 
-        .service-chip {
-            padding: 12px 20px;
-            border-radius: 30px;
-            background: rgba(181, 18, 27, 0.25);
-            border: 1px solid var(--yellow);
-            color: #f4d56b;
-            font-size: 13px;
-            font-weight: bold;
-        }
+.nav-links a:hover {
+    color: var(--red);
+}
 
-        /* BUTTONS */
+.header-btn {
+    background: var(--red);
+    color: white !important;
+    padding: 13px 20px;
+    border-radius: 5px;
+}
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 35px;
-        }
+.menu-btn {
+    display: none;
+    font-size: 27px;
+    background: none;
+    border: none;
+    color: var(--red);
+    cursor: pointer;
+}
 
-        .btn {
-            display: inline-block;
-            padding: 16px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            transition: 0.3s ease;
-        }
+/* HERO SLIDER */
 
-        .whatsapp-btn {
-            background: var(--red);
-            color: var(--white);
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-        }
+.hero {
+    height: 620px;
+    position: relative;
+    overflow: hidden;
+    background: var(--deep-red);
+}
 
-        .whatsapp-btn:hover {
-            background: var(--yellow);
-            color: var(--deep-red);
-            transform: translateY(-3px);
-        }
+.hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.12);
+    transition: opacity 1.2s ease, transform 6s ease;
+}
 
-        .call-btn {
-            background: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-        }
+.hero-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
 
-        .call-btn:hover {
-            background: var(--gold);
-            color: var(--deep-red);
-            transform: translateY(-3px);
-        }
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(26,4,5,.92),
+        rgba(75,5,10,.65),
+        rgba(0,0,0,.2)
+    );
+}
 
-        .contact-number {
-            color: #f2d66c;
-            font-size: 17px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 150px 9%;
+    max-width: 850px;
+    animation: heroEnter 1s ease;
+}
 
-        /* FOOTER */
+.hero-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: #250709;
+    padding: 10px 18px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    border-radius: 3px;
+}
 
-        footer {
-            padding: 22px 15px;
-            text-align: center;
-            border-top: 1px solid rgba(237, 195, 67, 0.25);
-            color: #d8bdbd;
-            font-size: 12px;
-        }
+.hero h1 {
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 20px;
+}
 
-        footer span {
-            color: var(--gold);
-            font-weight: bold;
-        }
+.hero h1 span {
+    color: var(--gold);
+}
 
-        /* DECORATIVE CIRCLES */
+.hero p {
+    font-size: 15px;
+    line-height: 1.9;
+    max-width: 550px;
+    color: #f6eaea;
+    margin-bottom: 30px;
+}
 
-        .circle {
-            position: fixed;
-            border: 1px solid rgba(237, 195, 67, 0.12);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-        }
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
 
-        .circle-one {
-            width: 300px;
-            height: 300px;
-            top: 15%;
-            left: -180px;
-        }
+.btn {
+    display: inline-block;
+    padding: 16px 25px;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 4px;
+    transition: .3s;
+}
 
-        .circle-two {
-            width: 400px;
-            height: 400px;
-            bottom: -200px;
-            right: -180px;
-        }
+.btn-red {
+    background: var(--red);
+    color: white;
+    border: 2px solid var(--red);
+}
 
-        /* MOBILE RESPONSIVE */
+.btn-red:hover {
+    background: var(--yellow);
+    color: var(--deep-red);
+    border-color: var(--yellow);
+    transform: translateY(-4px);
+}
 
-        @media (max-width: 600px) {
-            header {
-                padding: 20px 5%;
-                flex-direction: column;
-                gap: 12px;
-            }
+.btn-outline {
+    border: 2px solid var(--gold);
+    color: var(--gold);
+}
 
-            .logo {
-                font-size: 22px;
-            }
+.btn-outline:hover {
+    background: var(--gold);
+    color: var(--deep-red);
+    transform: translateY(-4px);
+}
 
-            main {
-                padding: 50px 18px;
-            }
+.slider-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 9%;
+    z-index: 5;
+    display: flex;
+    gap: 10px;
+}
 
-            .taxi-icon {
-                font-size: 60px;
-            }
+.slider-dots button {
+    height: 9px;
+    width: 9px;
+    border: 0;
+    border-radius: 50px;
+    background: white;
+    cursor: pointer;
+    transition: .3s;
+}
 
-            .subtitle {
-                font-size: 16px;
-            }
+.slider-dots button.active {
+    width: 30px;
+    background: var(--gold);
+}
 
-            .service-chip {
-                font-size: 12px;
-                padding: 10px 14px;
-            }
+/* QUICK SERVICES */
 
-            .buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
+.quick-services {
+    background: var(--red);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    color: white;
+    padding: 27px 7%;
+}
 
-            .btn {
-                width: 100%;
-            }
+.quick-item {
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid rgba(255,255,255,.25);
+}
 
-            footer {
-                line-height: 1.8;
-            }
-        }
-    </style>
+.quick-item:last-child {
+    border: 0;
+}
+
+.quick-item strong {
+    display: block;
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.quick-item small {
+    font-size: 11px;
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 85px 8%;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading small {
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 3px;
+    font-weight: 900;
+}
+
+.section-heading h2 {
+    color: #2b1717;
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 900;
+    margin-top: 12px;
+}
+
+.section-heading h2 span {
+    color: var(--red);
+}
+
+.section-heading p {
+    color: #777;
+    font-size: 13px;
+    margin-top: 12px;
+    line-height: 1.8;
+}
+
+/* ABOUT */
+
+.about {
+    background: var(--cream);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.about-image {
+    position: relative;
+    overflow: visible;
+}
+
+.about-image img {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 15px 15px 0 var(--gold);
+    transition: transform 1s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.04);
+}
+
+.about-badge {
+    position: absolute;
+    bottom: -20px;
+    left: 20px;
+    background: var(--red);
+    color: white;
+    padding: 17px 24px;
+    font-weight: 900;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.about-content small {
+    color: var(--red);
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.about-content h2 {
+    font-size: 35px;
+    line-height: 1.25;
+    margin: 15px 0;
+}
+
+.about-content h2 span {
+    color: var(--red);
+}
+
+.about-content p {
+    font-size: 13px;
+    line-height: 2;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.check-list {
+    list-style: none;
+    margin: 20px 0 25px;
+}
+
+.check-list li {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.check-list li::before {
+    content: "✓";
+    color: var(--red);
+    font-size: 17px;
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+/* ROAD ANIMATION */
+
+.road-section {
+    background: linear-gradient(90deg, #3a080b, #790b12);
+    color: white;
+    padding: 30px 0 0;
+    overflow: hidden;
+}
+
+.road-message {
+    text-align: center;
+    padding: 0 15px 25px;
+}
+
+.road-message h3 {
+    font-size: 20px;
+    color: var(--gold);
+    animation: textGlow 2.5s ease-in-out infinite alternate;
+}
+
+.road-message p {
+    font-size: 12px;
+    margin-top: 8px;
+    color: #f5dddd;
+}
+
+.road {
+    height: 115px;
+    position: relative;
+    background: #292323;
+    border-top: 5px solid var(--gold);
+    overflow: hidden;
+}
+
+.road::after {
+    content: "";
+    position: absolute;
+    top: 54px;
+    width: 100%;
+    border-top: 4px dashed white;
+}
+
+.animated-taxi {
+    position: absolute;
+    z-index: 2;
+    top: 4px;
+    left: -150px;
+    font-size: 75px;
+    animation: drive 9s linear infinite;
+}
+
+@keyframes drive {
+    from { left: -150px; }
+    to { left: 110%; }
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 0 transparent; }
+    to { text-shadow: 0 0 15px var(--gold); }
+}
+
+/* WHY CHOOSE US */
+
+.why {
+    background: white;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.why-card {
+    background: #fffaf0;
+    border: 1px solid #f0e4c7;
+    padding: 32px 25px;
+    text-align: center;
+    border-radius: 8px;
+    transition: .4s;
+}
+
+.why-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.1);
+    border-color: var(--yellow);
+}
+
+.why-icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.why-card h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--red);
+}
+
+.why-card p {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.8;
+}
+
+/* VEHICLES */
+
+.vehicles {
+    background: var(--cream);
+}
+
+.vehicle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.vehicle-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,.07);
+    transition: transform .5s, box-shadow .5s;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(181,18,27,.15);
+}
+
+.vehicle-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform .8s;
+}
+
+.vehicle-card:hover img {
+    transform: scale(1.08);
+}
+
+.vehicle-image {
+    overflow: hidden;
+}
+
+.vehicle-info {
+    padding: 25px;
+}
+
+.vehicle-info h3 {
+    font-size: 21px;
+    color: var(--red);
+}
+
+.vehicle-info p {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #777;
+    margin: 12px 0;
+}
+
+.vehicle-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.vehicle-meta span {
+    background: #fff4d2;
+    color: #725400;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.vehicle-info a {
+    display: inline-block;
+    color: white;
+    background: var(--red);
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+/* TARIFF */
+
+.tariff {
+    background: white;
+}
+
+.tariff-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.tariff-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .4s, box-shadow .4s;
+}
+
+.tariff-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px rgba(0,0,0,.08);
+}
+
+.tariff-title {
+    background: var(--red);
+    color: white;
+    padding: 20px;
+    font-weight: 900;
+}
+
+.tariff-title span {
+    display: block;
+    color: var(--gold);
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.tariff-body {
+    padding: 22px;
+}
+
+.tariff-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 13px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.tariff-row strong {
+    color: var(--red);
+    text-align: right;
+}
+
+.tariff-note {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+/* CALL TO ACTION */
+
+.cta {
+    background: linear-gradient(120deg, #65080d, #b5121b);
+    text-align: center;
+    color: white;
+    padding: 65px 20px;
+}
+
+.cta h2 {
+    font-size: clamp(25px, 4vw, 40px);
+    margin-bottom: 15px;
+}
+
+.cta h2 span {
+    color: var(--gold);
+}
+
+.cta p {
+    color: #f7e2e2;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+/* TESTIMONIALS */
+
+.testimonials {
+    background: var(--cream);
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.review {
+    background: white;
+    padding: 28px;
+    border-radius: 8px;
+    border-bottom: 4px solid var(--yellow);
+    transition: .4s;
+}
+
+.review:hover {
+    transform: translateY(-8px);
+}
+
+.stars {
+    color: var(--yellow);
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.review p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #666;
+}
+
+.review h4 {
+    color: var(--red);
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+/* BOOKING */
+
+.booking {
+    background: #26090b;
+    color: white;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.booking-info small {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-weight: 900;
+}
+
+.booking-info h2 {
+    font-size: 37px;
+    margin: 15px 0;
+    line-height: 1.3;
+}
+
+.booking-info h2 span {
+    color: var(--gold);
+}
+
+.booking-info p {
+    font-size: 13px;
+    color: #e8caca;
+    line-height: 2;
+    margin-bottom: 25px;
+}
+
+.booking-contact {
+    color: var(--gold);
+    font-weight: 800;
+    line-height: 2.2;
+    font-size: 14px;
+}
+
+.booking-form {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    color: #333;
+    transition: .4s;
+}
+
+.booking-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.15);
+}
+
+.booking-form h3 {
+    color: var(--red);
+    font-size: 21px;
+    margin-bottom: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    outline: none;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--red);
+}
+
+.form-group textarea {
+    height: 85px;
+    resize: vertical;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 900;
+    font-size: 12px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.submit-btn:hover {
+    background: var(--yellow);
+    color: var(--deep-red);
+}
+
+/* FOOTER */
+
+footer {
+    background: #160607;
+    color: white;
+    padding: 55px 8% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 35px;
+    padding-bottom: 35px;
+}
+
+.footer-about h3 {
+    color: var(--gold);
+    font-size: 21px;
+    margin-bottom: 15px;
+}
+
+.footer-about p {
+    font-size: 12px;
+    color: #cdbbbb;
+    line-height: 2;
+}
+
+.footer-column h4 {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.footer-column a {
+    display: block;
+    color: #d9caca;
+    font-size: 12px;
+    margin-bottom: 13px;
+    transition: .3s;
+}
+
+.footer-column a:hover {
+    color: var(--gold);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #472326;
+    padding-top: 20px;
+    text-align: center;
+    color: #bda9a9;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.footer-bottom span {
+    color: var(--gold);
+}
+
+/* FLOATING WHATSAPP */
+
+.float-whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 1000;
+    background: #25d366;
+    color: white;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.25);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.4); }
+    50% { box-shadow: 0 0 0 12px rgba(37,211,102,0); }
+}
+
+/* BACK TO TOP */
+
+#backToTop {
+    position: fixed;
+    bottom: 90px;
+    right: 27px;
+    width: 43px;
+    height: 43px;
+    border: none;
+    border-radius: 50%;
+    background: var(--red);
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: .4s;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+}
+
+#backToTop.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    background: var(--gold);
+    color: var(--deep-red);
+}
+
+/* SCROLL ANIMATIONS */
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-zoom,
+.reveal-rotate {
+    opacity: 0;
+    transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal {
+    transform: translateY(65px);
+}
+
+.reveal-left {
+    transform: translateX(-85px);
+}
+
+.reveal-right {
+    transform: translateX(85px);
+}
+
+.reveal-zoom {
+    transform: scale(.78);
+}
+
+.reveal-rotate {
+    transform: translateY(45px) rotate(-5deg);
+}
+
+.reveal.show,
+.reveal-left.show,
+.reveal-right.show,
+.reveal-zoom.show,
+.reveal-rotate.show {
+    opacity: 1;
+    transform: translate(0,0) scale(1) rotate(0);
+}
+
+/* STAGGER CARDS */
+
+.stagger-group > * {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.stagger-group.show > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-group.show > *:nth-child(1) { transition-delay: .1s; }
+.stagger-group.show > *:nth-child(2) { transition-delay: .2s; }
+.stagger-group.show > *:nth-child(3) { transition-delay: .3s; }
+.stagger-group.show > *:nth-child(4) { transition-delay: .4s; }
+.stagger-group.show > *:nth-child(5) { transition-delay: .5s; }
+.stagger-group.show > *:nth-child(6) { transition-delay: .6s; }
+
+/* HERO ENTRY */
+
+@keyframes heroEnter {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .about-grid,
+    .booking-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-grid,
+    .testimonial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 650px) {
+    .topbar {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .topbar .top-extra {
+        display: none;
+    }
+
+    header {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .logo span {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,.1);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 14px;
+        font-size: 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .hero {
+        height: 560px;
+    }
+
+    .hero-content {
+        padding: 120px 7%;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .quick-services {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px 5%;
+    }
+
+    .quick-item:nth-child(2) {
+        border-right: 0;
+    }
+
+    section {
+        padding: 60px 6%;
+    }
+
+    .about-content h2,
+    .booking-info h2 {
+        font-size: 29px;
+    }
+
+    .about-image img {
+        height: 280px;
+    }
+
+    .why-grid,
+    .vehicle-grid,
+    .tariff-grid,
+    .testimonial-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .booking-form {
+        padding: 22px;
+    }
+
+    .animated-taxi {
+        font-size: 62px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-buttons .btn {
+        text-align: center;
+    }
+}
+
+/* REDUCE ANIMATION FOR ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-zoom,
+    .reveal-rotate {
+        opacity: 1;
+        transform: none;
+    }
+
+    .stagger-group > * {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <div class="circle circle-one"></div>
-    <div class="circle circle-two"></div>
+<div id="scrollProgress"></div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo">
-            KING OF <span>KING TAXI</span>
+<!-- TOP BAR -->
+<div class="topbar">
+    <div>Welcome to KING OF KING TAXI</div>
+    <div class="top-extra">
+        Call us: <a href="tel:+919578117337">+91 95781 17337</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <a href="#home" class="logo">
+        KING OF KING TAXI
+        <span>YOUR JOURNEY, OUR RESPONSIBILITY</span>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#services">SERVICES</a>
+        <a href="#vehicles">VEHICLES</a>
+        <a href="#tariff">TARIFF</a>
+        <a href="#booking" class="header-btn">BOOK A TAXI</a>
+    </nav>
+</header>
+
+<!-- HERO SLIDER - FIVE IMAGES -->
+<div class="hero" id="home">
+
+    <div class="hero-slide active"
+    style="background-image:url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=2000&q=85')"></div>
+
+    <div class="hero-slide"
+    style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2000&q=85')"></div>
+
+    <div class="hero-slide"
+    style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=85')"></div>
+
+    <div class="hero-slide"
+    style="background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=2000&q=85')"></div>
+
+    <div class="hero-slide"
+    style="background-image:url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=2000&q=85')"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <div class="hero-tag">SAFE • COMFORTABLE • RELIABLE</div>
+
+        <h1>
+            YOUR RIDE.<br>
+            <span>YOUR COMFORT.</span>
+        </h1>
+
+        <p>
+            Travel with confidence and comfort.
+            Choose King of King Taxi for your local rides,
+            outstation journeys and family trips.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#booking" class="btn btn-red">BOOK YOUR TAXI →</a>
+            <a href="tel:+919578117337" class="btn btn-outline">☎ CALL NOW</a>
+        </div>
+    </div>
+
+    <div class="slider-dots" id="sliderDots">
+        <button class="active" aria-label="Slide 1"></button>
+        <button aria-label="Slide 2"></button>
+        <button aria-label="Slide 3"></button>
+        <button aria-label="Slide 4"></button>
+        <button aria-label="Slide 5"></button>
+    </div>
+</div>
+
+<!-- QUICK SERVICES -->
+<div class="quick-services">
+    <div class="quick-item">
+        <strong>LOCAL RIDES</strong>
+        <small>City travel and rentals</small>
+    </div>
+    <div class="quick-item">
+        <strong>OUTSTATION</strong>
+        <small>Long-distance journeys</small>
+    </div>
+    <div class="quick-item">
+        <strong>FAMILY TRIPS</strong>
+        <small>Comfortable travel</small>
+    </div>
+    <div class="quick-item">
+        <strong>BOOKING ENQUIRY</strong>
+        <small>Contact us anytime</small>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-grid">
+
+        <div class="about-image reveal-left">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1000&q=85"
+            alt="Comfortable taxi travel">
+            <div class="about-badge">TRAVEL WITH COMFORT</div>
         </div>
 
-        <a class="header-contact" href="tel:+919578117337">
-            CALL: +91 95781 17337
-        </a>
-    </header>
+        <div class="about-content reveal-right">
+            <small>WELCOME TO KING OF KING TAXI</small>
+            <h2>Your Journey Is Our <span>Priority</span></h2>
 
-    <!-- MAIN SECTION -->
-    <main>
-        <div class="container">
-
-            <div class="taxi-icon">🚕</div>
-
-            <div class="small-heading">
-                YOUR JOURNEY STARTS HERE
-            </div>
-
-            <h1>
-                WE'RE
-                <span>COMING SOON</span>
-            </h1>
-
-            <div class="divider"></div>
-
-            <p class="subtitle">
-                Your Journey, Our Responsibility.<br>
-                Comfortable Rides. Reliable Service. Affordable Travel.
+            <p>
+                We are committed to making your journey comfortable,
+                convenient and memorable. Whether you need a local taxi,
+                an outstation trip or a family journey, we are here to help.
             </p>
 
-            <!-- SERVICES -->
-            <div class="services">
-                <div class="service-chip">SEDAN 4+1</div>
-                <div class="service-chip">LUXURY SUV 7+1</div>
-                <div class="service-chip">LOCAL TRAVEL</div>
-                <div class="service-chip">OUTSTATION TRIPS</div>
-            </div>
-
-            <!-- CONTACT BUTTONS -->
-            <div class="buttons">
-
-                <a class="btn whatsapp-btn"
-                   href="https://wa.me/919578117337?text=Hello%20King%20of%20King%20Taxi%2C%20I%20would%20like%20to%20book%20a%20taxi."
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    CONTACT ON WHATSAPP
-                </a>
-
-                <a class="btn call-btn" href="tel:+919578117337">
-                    CALL NOW
-                </a>
-
-            </div>
-
-            <p class="contact-number">
-                +91 95781 17337
+            <p>
+                Choose from our Sedan and Luxury SUV options and
+                contact us directly for your travel requirements.
             </p>
 
+            <ul class="check-list">
+                <li>Comfortable travel experience</li>
+                <li>Vehicle options for every journey</li>
+                <li>Local and outstation taxi services</li>
+                <li>Easy WhatsApp booking</li>
+            </ul>
+
+            <a href="#booking" class="btn btn-red">BOOK YOUR JOURNEY</a>
         </div>
-    </main>
 
-    <!-- FOOTER -->
-    <footer>
+    </div>
+</section>
+
+<!-- MOVING TAXI -->
+<div class="road-section">
+    <div class="road-message">
+        <h3>LET'S MAKE YOUR JOURNEY SPECIAL!</h3>
+        <p>Your destination is waiting. Travel with King of King Taxi.</p>
+    </div>
+
+    <div class="road">
+        <div class="animated-taxi">🚕</div>
+    </div>
+</div>
+
+<!-- WHY CHOOSE US -->
+<section class="why" id="services">
+    <div class="section-heading reveal">
+        <small>OUR ADVANTAGES</small>
+        <h2>Why Choose <span>Us?</span></h2>
+        <p>We focus on making every journey simple and comfortable.</p>
+    </div>
+
+    <div class="why-grid stagger-group">
+
+        <div class="why-card">
+            <div class="why-icon">🚖</div>
+            <h3>Comfortable Vehicles</h3>
+            <p>Choose a suitable vehicle for your personal, family or group travel.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">📍</div>
+            <h3>Local & Outstation</h3>
+            <p>Plan your city travel, long-distance trips and outstation journeys.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">💰</div>
+            <h3>Clear Tariff Details</h3>
+            <p>View the available vehicle rates and confirm your fare before booking.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">📱</div>
+            <h3>Easy Booking</h3>
+            <p>Send your travel details directly through WhatsApp.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">🧳</div>
+            <h3>Family Travel</h3>
+            <p>Vehicle options for individual travellers and family journeys.</p>
+        </div>
+
+        <div class="why-card">
+            <div class="why-icon">🤝</div>
+            <h3>Customer Care</h3>
+            <p>Contact us for booking enquiries and trip-related assistance.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- VEHICLES -->
+<section class="vehicles" id="vehicles">
+    <div class="section-heading reveal">
+        <small>OUR FLEET</small>
+        <h2>Choose Your <span>Ride</span></h2>
+        <p>Comfortable vehicle options for your travel needs.</p>
+    </div>
+
+    <div class="vehicle-grid stagger-group">
+
+        <div class="vehicle-card">
+            <div class="vehicle-image">
+                <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1000&q=85"
+                alt="Sedan taxi">
+            </div>
+            <div class="vehicle-info">
+                <h3>Sedan 4+1</h3>
+                <p>A comfortable option for city travel, business trips and small families.</p>
+                <div class="vehicle-meta">
+                    <span>4 PASSENGERS</span>
+                    <span>AC</span>
+                    <span>COMFORTABLE</span>
+                </div>
+                <a href="#booking">BOOK THIS VEHICLE →</a>
+            </div>
+        </div>
+
+        <div class="vehicle-card">
+            <div class="vehicle-image">
+                <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1000&q=85"
+                alt="Luxury SUV">
+            </div>
+            <div class="vehicle-info">
+                <h3>Luxury SUV 7+1</h3>
+                <p>A spacious option for family travel, group journeys and outstation trips.</p>
+                <div class="vehicle-meta">
+                    <span>7 PASSENGERS</span>
+                    <span>AC</span>
+                    <span>SPACIOUS</span>
+                </div>
+                <a href="#booking">BOOK THIS VEHICLE →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TARIFF -->
+<section class="tariff" id="tariff">
+    <div class="section-heading reveal">
+        <small>OUR PRICING</small>
+        <h2>Taxi <span>Tariff</span></h2>
+        <p>Indicative rates. Please confirm the final trip fare before booking.</p>
+    </div>
+
+    <div class="tariff-grid stagger-group">
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                SEDAN 4+1
+                <span>COMFORTABLE CITY & OUTSTATION TRAVEL</span>
+            </div>
+            <div class="tariff-body">
+                <div class="tariff-row">
+                    <span>Local Rental</span>
+                    <strong>₹1,000 / 3 hrs, 30 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Round Trip</span>
+                    <strong>₹13 / km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Round Trip Minimum</span>
+                    <strong>250 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>One-Way Drop</span>
+                    <strong>₹14 / km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>One-Way Minimum</span>
+                    <strong>130 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Driver Bata</span>
+                    <strong>₹400</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="tariff-card">
+            <div class="tariff-title">
+                LUXURY SUV 7+1
+                <span>SPACIOUS FAMILY & GROUP TRAVEL</span>
+            </div>
+            <div class="tariff-body">
+                <div class="tariff-row">
+                    <span>Local Rental</span>
+                    <strong>₹2,000 / 5 hrs, 50 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Round Trip</span>
+                    <strong>₹18 / km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Round Trip Minimum</span>
+                    <strong>250 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>One-Way Drop</span>
+                    <strong>₹19 / km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>One-Way Minimum</span>
+                    <strong>130 km</strong>
+                </div>
+                <div class="tariff-row">
+                    <span>Driver Bata</span>
+                    <strong>₹500</strong>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="tariff-note">
+        Note: Toll, parking, permit and hill charges are extra.
+        Local extra-hour and extra-kilometre charges should be confirmed
+        at the time of booking. Monthly packages are available on enquiry.
+    </p>
+</section>
+
+<!-- CALL TO ACTION -->
+<div class="cta reveal">
+    <h2>Ready for Your <span>Next Journey?</span></h2>
+    <p>Book your taxi today. Our team is ready to receive your enquiry.</p>
+    <a href="#booking" class="btn btn-outline">BOOK YOUR TAXI NOW →</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-heading reveal">
+        <small>TRAVEL EXPERIENCE</small>
+        <h2>Customer <span>Reviews</span></h2>
+        <p>We aim to make every customer journey a pleasant experience.</p>
+    </div>
+
+    <div class="testimonial-grid stagger-group">
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Looking for a comfortable and convenient taxi service? Contact King of King Taxi for your travel enquiry."</p>
+            <h4>Customer Feedback</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"A convenient way to enquire about local and outstation travel with different vehicle options."</p>
+            <h4>Customer Feedback</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>"Easy booking enquiry through WhatsApp makes planning a journey simple."</p>
+            <h4>Customer Feedback</h4>
+        </div>
+
+    </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+
+    <div class="booking-grid">
+
+        <div class="booking-info reveal-left">
+            <small>BOOK YOUR TAXI</small>
+            <h2>Let's Plan Your <span>Journey!</span></h2>
+
+            <p>
+                Fill in your trip details and click the booking button.
+                Your information will be sent to our WhatsApp number
+                so we can contact you about your journey.
+            </p>
+
+            <div class="booking-contact">
+                ☎ +91 95781 17337<br>
+                ✉ WhatsApp Booking Available<br>
+                🚖 Local & Outstation Trips
+            </div>
+        </div>
+
+        <div class="booking-form reveal-right">
+            <h3>Taxi Booking Enquiry</h3>
+
+            <form id="bookingForm">
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="customerName">YOUR NAME *</label>
+                        <input type="text" id="customerName" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">PHONE NUMBER *</label>
+                        <input type="tel" id="phone" placeholder="Your mobile number"
+                        pattern="[0-9+\s-]{10,16}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vehicle">SELECT VEHICLE *</label>
+                        <select id="vehicle" required>
+                            <option value="">Choose vehicle</option>
+                            <option>Sedan 4+1</option>
+                            <option>Luxury SUV 7+1</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="trip">TRIP TYPE *</label>
+                        <select id="trip" required>
+                            <option value="">Select trip</option>
+                            <option>Local Rental</option>
+                            <option>Round Trip</option>
+                            <option>One-Way Drop</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickupDate">PICKUP DATE *</label>
+                        <input type="date" id="pickupDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickupTime">PICKUP TIME</label>
+                        <input type="time" id="pickupTime">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pickup">PICKUP LOCATION *</label>
+                        <input type="text" id="pickup" placeholder="Pickup location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="drop">DROP LOCATION *</label>
+                        <input type="text" id="drop" placeholder="Drop location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passengers">PASSENGERS</label>
+                        <select id="passengers">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distance">ESTIMATED DISTANCE (KM)</label>
+                        <input type="number" id="distance" min="1" placeholder="Optional">
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="message">ADDITIONAL MESSAGE</label>
+                        <textarea id="message" placeholder="Any special requirements?"></textarea>
+                    </div>
+
+                    <div class="form-group full">
+                        <button type="submit" class="submit-btn">
+                            SEND BOOKING ENQUIRY ON WHATSAPP →
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+
+        <div class="footer-about">
+            <h3>KING OF KING TAXI</h3>
+            <p>
+                Your Journey, Our Responsibility.
+                Contact us for local taxi rentals, outstation trips
+                and comfortable family travel.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>QUICK LINKS</h4>
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Our Services</a>
+            <a href="#vehicles">Our Vehicles</a>
+            <a href="#tariff">Taxi Tariff</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>CONTACT US</h4>
+            <a href="tel:+919578117337">☎ +91 95781 17337</a>
+            <a href="https://wa.me/919578117337" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+            <a href="#booking">Book a Taxi</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
         © 2026 <span>KING OF KING TAXI</span>. All Rights Reserved.
         <br>
-        Safe Journey | Best Service | Customer Satisfaction
-    </footer>
+        Designed with care for your journey.
+    </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-whatsapp"
+href="https://wa.me/919578117337"
+target="_blank"
+rel="noopener noreferrer"
+aria-label="Chat on WhatsApp">☏</a>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+// MOBILE NAVIGATION
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", function() {
+    navLinks.classList.toggle("open");
+    menuBtn.textContent =
+        navLinks.classList.contains("open") ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.textContent = "☰";
+    });
+});
+
+// FIVE IMAGE HERO SLIDER
+
+const slides = document.querySelectorAll(".hero-slide");
+const dots = document.querySelectorAll(".slider-dots button");
+
+let currentSlide = 0;
+let slideTimer;
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    currentSlide = index;
+    slides[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+}
+
+function startSlider() {
+    clearInterval(slideTimer);
+
+    slideTimer = setInterval(() => {
+        showSlide((currentSlide + 1) % slides.length);
+    }, 4500);
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+        showSlide(index);
+        startSlider();
+    });
+});
+
+startSlider();
+
+// SCROLL ANIMATION OBSERVER
+
+const animatedElements = document.querySelectorAll(
+    '.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-rotate, .stagger-group'
+);
+
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            animationObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -35px 0px"
+});
+
+animatedElements.forEach(element => {
+    animationObserver.observe(element);
+});
+
+// SCROLL PROGRESS AND BACK TO TOP
+
+const progressBar = document.getElementById("scrollProgress");
+const backToTop = document.getElementById("backToTop");
+
+function updateScrollEffects() {
+    const scrollTop = window.scrollY;
+    const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+    const progress = scrollHeight > 0
+        ? (scrollTop / scrollHeight) * 100
+        : 0;
+
+    progressBar.style.width = progress + "%";
+
+    if (scrollTop > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+}
+
+window.addEventListener("scroll", updateScrollEffects, { passive: true });
+updateScrollEffects();
+
+// BACK TO TOP
+
+backToTop.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// HERO PARALLAX
+
+const hero = document.querySelector(".hero");
+
+window.addEventListener("scroll", () => {
+    if (!hero || window.innerWidth < 768) return;
+
+    const heroBottom = hero.offsetTop + hero.offsetHeight;
+
+    if (window.scrollY < heroBottom) {
+        const movement = window.scrollY * 0.12;
+
+        slides.forEach(slide => {
+            slide.style.backgroundPositionY = movement + "px";
+        });
+    }
+}, { passive: true });
+
+// PREVENT PAST BOOKING DATES
+
+const dateInput = document.getElementById("pickupDate");
+
+const today = new Date();
+const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+dateInput.min = localToday;
+
+// WHATSAPP BOOKING FORM
+
+document.getElementById("bookingForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const vehicle = document.getElementById("vehicle").value;
+    const trip = document.getElementById("trip").value;
+    const date = document.getElementById("pickupDate").value;
+    const time = document.getElementById("pickupTime").value || "Not specified";
+    const pickup = document.getElementById("pickup").value.trim();
+    const drop = document.getElementById("drop").value.trim();
+    const passengers = document.getElementById("passengers").value;
+    const distance = document.getElementById("distance").value || "Not specified";
+    const message = document.getElementById("message").value.trim() || "None";
+
+    const whatsappNumber = "919578117337";
+
+    const bookingMessage =
+`*NEW TAXI BOOKING ENQUIRY*
+----------------------------
+*Name:* ${name}
+*Phone:* ${phone}
+*Vehicle:* ${vehicle}
+*Trip Type:* ${trip}
+*Pickup Date:* ${date}
+*Pickup Time:* ${time}
+*Pickup Location:* ${pickup}
+*Drop Location:* ${drop}
+*Passengers:* ${passengers}
+*Estimated Distance:* ${distance} km
+*Additional Message:* ${message}
+----------------------------
+Sent from King of King Taxi Website.`;
+
+    const whatsappURL =
+        "https://wa.me/" + whatsappNumber +
+        "?text=" + encodeURIComponent(bookingMessage);
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
 
 </body>
 </html>
